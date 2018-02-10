@@ -127,6 +127,14 @@ __Returns__
 
 A new instance of `Order`.
 
+#### `Order.prototype.value`
+
+A property that gets an array containing objects that define an order-by clause.  Each object has the following keys:
+
+* `direction`: a string indicating the sort direction of the order-by clause.  This can be either `asc` or `desc`.
+
+* `target`: an instance of [`Target`](#orderytarget).
+
 #### `Order.prototype.asc(target)`
 
 A method that appends an ascending order clause to the `Order` instance using the given `target`.
