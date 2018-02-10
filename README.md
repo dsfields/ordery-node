@@ -1,6 +1,6 @@
 # ordery
 
-The `ordery` module provides parsing for dynamic, ordery-by expressions, and serves as a high-level abstraction for query ordering.  Parsed expressions can then be later turned into order by statements for different database technologies.  This is most useful for ingesting dynamic queries in a request to a RESTful API collection.
+The `ordery` module provides parsing for dynamic, ordery-by statements, and serves as a high-level abstraction for query ordering.  Parsed expressions can then be later turned into order by statements for different database technologies.  This is most useful for ingesting dynamic queries in a request to a RESTful API collection.
 
 __Contents__
 * [Usage](#usage)
@@ -84,3 +84,93 @@ Order by target `/foo` ascending, and then by target `/bar/baz` descending.
 ```
 
 ## API
+
+The `ordery` module provides a simple interface for working with order-by expressions.
+
+### `ordery.parse(expression)`
+
+Parses an [Ordery Expression](#order-expression).
+
+__Parameters__
+
+* `expression`: _(required)_ a string formatted as an Order Expression.
+
+__Returns__
+
+An instance of [`Order`](#class-order).
+
+### `ordery.Order`
+
+A class representing an Order Expression.
+
+#### `Order.asc(target)`
+
+A factory method for creating instances of `Order`.  This method seeds the resulting `Order` instance with an ascending order clause with the given `target`.
+
+__Parameters__
+
+* `target`: _(required)_ a string formatted as an [RFC 6901 JSON pointer](https://tools.ietf.org/html/rfc6901), or an instance of [`Target`](#orderytarget).
+
+__Returns__
+
+A new instance of `Order`.
+
+#### `Order.desc(target)`
+
+A factory method for creating instances of `Order`.  This method seeds the resulting `Order` instance with a descending order clause with the given `target`.
+
+__Parameters__
+
+* `target`: _(required)_ a string formatted as an [RFC 6901 JSON pointer](https://tools.ietf.org/html/rfc6901), or an instance of [`Target`](#orderytarget).
+
+__Returns__
+
+A new instance of `Order`.
+
+#### `Order.prototype.asc(target)`
+
+A method that appends an ascending order clause to the `Order` instance using the given `target`.
+
+__Parameters__
+
+* `target`: _(required)_ a string formatted as an [RFC 6901 JSON pointer](https://tools.ietf.org/html/rfc6901), or an instance of [`Target`](#orderytarget).
+
+__Returns__
+
+The instance of `Order`.
+
+#### `Order.prototype.desc(target)`
+
+A method that appends a descending order clause to the `Order` instance using the given `target`.
+
+__Parameters__
+
+* `target`: _(required)_ a string formatted as an [RFC 6901 JSON pointer](https://tools.ietf.org/html/rfc6901), or an instance of [`Target`](#orderytarget).
+
+__Returns__
+
+The instance of `Order`.
+
+### `ordery.Target`
+
+A class that represents a field target in an order-by statement.
+
+#### `Target.parse(target)`
+
+A factory method that parses a string representing a field reference.
+
+__Parameters__
+
+* `target`: _(required)_ a string formatted as an [RFC 6901 JSON pointer](https://tools.ietf.org/html/rfc6901).
+
+__Returns__
+
+A new instance of `Target`.
+
+#### `Target.prototype.path`
+
+A property that gets an array of all field references in the target.  Each field reference is a string that represents the name of a key on a document or sub-document.
+
+#### `Target.prototype.value`
+
+A property that gets a string in [RFC 6901 JSON pointer](https://tools.ietf.org/html/rfc6901) representing the full target.
