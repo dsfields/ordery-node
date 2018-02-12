@@ -87,6 +87,10 @@ Order by target `/foo` ascending, and then by target `/bar/baz` descending.
 
 The `ordery` module provides a simple interface for working with order-by expressions.
 
+### `ordery.errors.ParserError`
+
+A reference to the error throw by the [Ordery Expression](#order-expression) parser when an invalid expression is encountered.
+
 ### `ordery.parse(expression)`
 
 Parses an [Ordery Expression](#order-expression).
