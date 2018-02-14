@@ -127,6 +127,54 @@ describe('Lexer', function() {
       assert.strictEqual(lexer.current.value, 'bar');
     });
 
+    it('parses int field', function() {
+      const lexer = new Lexer('/42');
+      lexer.next();
+      lexer.next();
+      assert.strictEqual(lexer.current.token, Token.FIELD);
+      assert.strictEqual(lexer.current.value, 42);
+    });
+
+    it('parses int parent field', function() {
+      const lexer = new Lexer('/4273/bar');
+      lexer.next();
+      lexer.next();
+      assert.strictEqual(lexer.current.token, Token.FIELD);
+      assert.strictEqual(lexer.current.value, 4273);
+    });
+
+    it('parses int subfield', function() {
+      const lexer = new Lexer('/foo/7');
+      lexer.next();
+      lexer.next();
+      lexer.next();
+      lexer.next();
+      assert.strictEqual(lexer.current.token, Token.FIELD);
+      assert.strictEqual(lexer.current.value, 7);
+    });
+
+    it('parses int fields', function() {
+      const lexer = new Lexer('/42/7');
+      lexer.next();
+      lexer.next();
+      assert.strictEqual(lexer.current.token, Token.FIELD);
+      assert.strictEqual(lexer.current.value, 42);
+      lexer.next();
+      lexer.next();
+      assert.strictEqual(lexer.current.token, Token.FIELD);
+      assert.strictEqual(lexer.current.value, 7);
+    });
+
+    it('parses int terminated with :', function() {
+      const lexer = new Lexer('/foo/7:desc');
+      lexer.next();
+      lexer.next();
+      lexer.next();
+      lexer.next();
+      assert.strictEqual(lexer.current.token, Token.FIELD);
+      assert.strictEqual(lexer.current.value, 7);
+    });
+
     it('parses asc direction after :', function() {
       const lexer = new Lexer(':asc');
       lexer.next();

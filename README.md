@@ -181,8 +181,8 @@ A new instance of `Target`.
 
 #### `Target.prototype.path`
 
-A property that gets an array of all field references in the target.  Each field reference is a string that represents the name of a key on a document or sub-document.
+A property that gets an array of all field references in the target.  Each field reference is a string that represents the name of a key on a document or sub-document, or an integer that references an index in an array.
 
-#### `Target.prototype.value`
+### `Target.prototype.value`
 
-A property that gets a string in [RFC 6901 JSON pointer](https://tools.ietf.org/html/rfc6901) representing the full target.
+A property that gets a string that represents the original JSON pointer value.
