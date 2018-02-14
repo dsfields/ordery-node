@@ -6,6 +6,7 @@ __Contents__
 * [Usage](#usage)
 * [Ordery Expressions](#ordery-expressions)
 * [API](#api)
+* [Plugins](#plugins)
 
 ## Usage
 
@@ -186,3 +187,11 @@ A property that gets an array of all field references in the target.  Each field
 ### `Target.prototype.value`
 
 A property that gets a string that represents the original JSON pointer value.
+
+## Plugins
+
+The `ordery` module provides a high-level abstraction over the concern of sort instructions, and is suitable for communicating sort instructions across application layers.  At some point, `order.Order` instances need to be converted into a sort instruction usable by an database technology.
+
+Available plugins for this purpose include:
+
+* [`ordery-mongodb`](https://www.npmjs.com/package/ordery-mongodb)
