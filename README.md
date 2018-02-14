@@ -88,6 +88,14 @@ Order by target `/foo` ascending, and then by target `/bar/baz` descending.
 
 The `ordery` module provides a simple interface for working with order-by expressions.
 
+### `ordery.Direction`
+
+A reference to the `Direction` enum value.  This enum includes the values:
+
+* `ASC`: represents ascending order.
+
+* `DESC`: represents descending order.
+
 ### `ordery.errors.ParserError`
 
 A reference to the error throw by the [Ordery Expression](#order-expression) parser when an invalid expression is encountered.
