@@ -2,7 +2,7 @@
   "name": "ordery",
   "longName": "ordery",
   "description": "Create order-by expressions for Node.js applications.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "dependencies": {
     "elv": "^2.0.0"
   },

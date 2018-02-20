@@ -24,7 +24,7 @@ const ordery = require('ordery');
 const expr = '/foo/bar,/baz:desc,/qux:asc';
 const result = ordery.parse(expr);
 
-console.log(result);
+console.log(result.value);
 // [
 //   {
 //     target: {
@@ -110,7 +110,11 @@ __Parameters__
 
 __Returns__
 
-An instance of [`Order`](#class-order).
+An object containing the result of the parsing operation.  This object has the following keys:
+
+* `error`: if parsing failed, this key will contain the resulting [`ParserError`](#orderyerrorsparsererror).  If parsing succeeded, this key is `null`.
+
+* `value`: instance of [`Order`](#orderyorder).
 
 ### `ordery.Order`
 

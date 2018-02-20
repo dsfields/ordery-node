@@ -94,6 +94,11 @@ describe('parse', function() {
     assert.deepEqual(value.value[1].direction, Direction.DESC);
   });
 
+  it('parses complex scenario 1', function() {
+    const result = parse('/foo/bar,/baz:desc,/qux:asc');
+    assert.isNull(result.error);
+  });
+
   it('errors if does not start with field indicator', function() {
     const { error } = parse('foo/bar:asc,/baz/qux:desc');
     assert.instanceOf(error, ParserError);
